@@ -23,7 +23,9 @@ public class Articulo {
 	 * @param nombre nombre del articulo
 	 * @param precio precio del articulo 
 	 * @param cant cantidad del articulo
+	 * @param departamento deto del articulo
 	 */
+
 	public Articulo(String nombre, double precio, int cant, String departamento) {
 
 		if (!nombre.isEmpty() && nombre != null) {
@@ -34,16 +36,17 @@ public class Articulo {
 			System.out.println("El nombre no es correcto.");
 		}
 		if (precio > 0) {
-			precio = precio;
+			this.precio = precio;
 
 		} else {
 			System.out.println("El precio no puede ser negativo.");
 		}
 		if (cant >= 0) {
-			cantidad = cant;
+			this.cantidad = cant;
 		} else {
 			System.out.println("La cantidad es incorrecta");
 		}
+		// Enum con el ValueOf
 		this.departamento = Departamento.valueOf(departamento);
 
 	}
@@ -89,12 +92,12 @@ public class Articulo {
 
 		String resultado = "";
 
-		resultado += "Nombre: " + nombre + "\n";
-		resultado += "Precio: " + precio + "\n";
+		resultado += "Nombre: " + this.nombre + "\n";
+		resultado += "Precio: " + this.precio + "\n";
 		resultado += "IVA: " + IVA + "\n";
-		resultado += "Cantidad: " + cantidad + "\n";
-		resultado += "Departamento: " + departamento + "\n";
-
+		resultado += "Departamento: " + this.departamento + "\n";
+		resultado += "Cantidad: " + this.cantidad + "\n";
+		
 		return resultado;
 
 	}
@@ -109,7 +112,7 @@ public class Articulo {
 		double PVP;
 		
 		// El pvp es el precio del producto más el precio del producto x 0.21
-		PVP = precio + (precio * IVA);
+		PVP = precio + (this.precio * IVA);
 
 		return PVP;
 	}
@@ -143,7 +146,7 @@ public class Articulo {
 
 		boolean venta = false;
 
-		if (cantidad >= cantidadVender) {
+		if (this.cantidad >= cantidadVender) {
 
 			cantidad -= cantidadVender;
 			venta = true;
@@ -160,7 +163,7 @@ public class Articulo {
 	 */
 	public void almacenar(int guardar) {
 
-		cantidad += guardar;
+		this.cantidad += guardar;
 	}
 
 }
